@@ -18,7 +18,7 @@ namespace Ex3D_DoubleEntryAccounting
             switch (selectedItem)
             {
                 case 1:
-                    //call Check Balances Method
+                    //call Check Balances Method//write today
                     break;
                 case 2:
                     //call View Accounts Method
