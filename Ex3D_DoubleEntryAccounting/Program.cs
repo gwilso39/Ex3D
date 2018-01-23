@@ -27,7 +27,7 @@ namespace Ex3D_DoubleEntryAccounting
                     viewAccountListing();
                     break;
                 case 4:
-                    //call Enter Transactions Method
+                    enterTransaction();
                     break;
                 case 5:
                     //call View Reports Method
@@ -36,22 +36,9 @@ namespace Ex3D_DoubleEntryAccounting
                     Console.WriteLine("Please select an item from the menu as 1 - 4");
                     break;
             }
-            Console.WriteLine($"You chose item number: {selectedItem}");
+            //Console.WriteLine($"You chose item number: {selectedItem}");
 
 
-            //Method to Check Balances show the following:
-            //each of the 7 accounts and their current balances
-            //upon completion of checking balance, enter 1 to return to main menu
-
-            //Method or Loop or Case to display the appropriate account ledger
-            //after ledger is displayed, enter 1 to return to account listing
-
-            //Method to enter a transaction, ask through the transation for the items:
-            //ID(key performatted, Date, Description (free text), USD, Acct to Credit, Acct to Debit
-            //as a stretch goal - be able to split a transation between accounts
-            //after last item is entered for entry, ask to save transaction or discard
-            //if saved, push transaction to database
-            //ask user to "enter 1 for main menu" and "enter 2 for another transaction"
 
             //Method to show a menu of reports available and return which one is selected
             //continue to use item 1 as return to main menu
@@ -62,6 +49,54 @@ namespace Ex3D_DoubleEntryAccounting
 
             //Method to compile individual reports (each?)
         }
+        //Method to enter a transaction, 
+        //as a stretch goal - be able to split a transation between accounts
+        //after last item is entered for entry, ask to save transaction or discard
+        //if saved, push transaction to database
+        //ask user to "enter 1 for main menu" and "enter 2 for another transaction"
+
+        static void enterTransaction()
+        {
+            int i = 0;
+            int n = 1;
+            Console.Clear();
+            Console.WriteLine("Enter your transaction details:\n");
+
+            for (i = 0; i <= 5; i++)
+            {
+                switch (n)
+                {
+                    case 1:
+                        Console.Write("Date: ");
+                        string date = Console.ReadLine();
+                        n = 2;
+                        break;
+                    case 2:
+                        Console.Write("Description: ");
+                        string description = Console.ReadLine();
+                        n = 3;
+                        break;
+                    case 3:
+                        Console.Write("Amount: $");
+                        double amount = double.Parse(Console.ReadLine());
+                        n = 4;
+                        break;
+                    case 4:
+                        Console.Write("Account Credited: ");
+                        string acctCredit = Console.ReadLine(); 
+                        n = 5;
+                        break;
+                    case 5:
+                        Console.Write("Account Debited: ");
+                        string acctDebit = Console.ReadLine();
+                        n = 6;
+                        break;
+                }
+            }
+            //Do something here at the end of the for loop
+        }
+
+
         //Method to View Account Listing for further selection
         static int viewAccountListing()
         {
@@ -71,7 +106,11 @@ namespace Ex3D_DoubleEntryAccounting
             Console.WriteLine(" 1. Assets\n 2. Liabilities\n 3. Equities\n 4. Revenue\n 5. Expenses\n 6. Gains\n 7. Losses\n");
             selectedItem = int.Parse(Console.ReadLine());
             return selectedItem;
+
+        //NEED Method or Loop or Case to display the appropriate account ledger
+        //after ledger is displayed, enter 1 to return to account listing
         }
+
 
         //Method to display the main menu items to the screen and return user's selection
         static int selectMainMenuItem ()
