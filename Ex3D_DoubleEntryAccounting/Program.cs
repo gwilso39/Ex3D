@@ -24,7 +24,7 @@ namespace Ex3D_DoubleEntryAccounting
                     checkBalances();
                     break;
                 case 3:
-                    //call View Accounts Method
+                    viewAccountListing();
                     break;
                 case 4:
                     //call Enter Transactions Method
@@ -42,10 +42,6 @@ namespace Ex3D_DoubleEntryAccounting
             //Method to Check Balances show the following:
             //each of the 7 accounts and their current balances
             //upon completion of checking balance, enter 1 to return to main menu
-
-            //Method to View Account Listing for further selection
-            //which account would you like?  show a screen with 7 accounts with numbers to select
-            //enter 1 to return to main menu
 
             //Method or Loop or Case to display the appropriate account ledger
             //after ledger is displayed, enter 1 to return to account listing
@@ -66,10 +62,18 @@ namespace Ex3D_DoubleEntryAccounting
 
             //Method to compile individual reports (each?)
         }
+        //Method to View Account Listing for further selection
+        static int viewAccountListing()
+        {
+            int selectedItem = 0;
+            Console.Clear();
+            Console.WriteLine("Select the account or 1 to return:");
+            Console.WriteLine(" 1. Assets\n 2. Liabilities\n 3. Equities\n 4. Revenue\n 5. Expenses\n 6. Gains\n 7. Losses\n");
+            selectedItem = int.Parse(Console.ReadLine());
+            return selectedItem;
+        }
 
         //Method to display the main menu items to the screen and return user's selection
-        //menu items include "Check Balances" "View Account" "Enter a Transaction" "View Reports"
-
         static int selectMainMenuItem ()
         {
             int selectedItem = 0;
@@ -79,21 +83,21 @@ namespace Ex3D_DoubleEntryAccounting
             selectedItem = int.Parse(Console.ReadLine());
             return selectedItem;
         }
-        //method to display accounts and balances
+        //Method to display accounts and balances
         //NEED to complete SQL to show the balances of each account
         static int checkBalances ()
         {
             int selectedItem = 0;
             Console.Clear();
             Console.WriteLine("Your current balances are:\n");
-            Console.WriteLine(" 1. Assets (Balance)\n 2. Liabilities (Balance)\n 3. Equities (Balance)\n 4. Revenue (Balance)\n 5. Expenses (Balance)\n 6. Gains (Balance)\n 7. Losses (Balance)\n");
+            Console.WriteLine(" 1. Return\n Assets (Balance)\n Liabilities (Balance)\n Equities (Balance)\n Revenue (Balance)\n Expenses (Balance)\n Gains (Balance)\n Losses (Balance)\n");
             Console.WriteLine("Enter 1 to return: ");
             selectedItem = int.Parse(Console.ReadLine());
             if (selectedItem != 1)
             {
                 Console.WriteLine("Please enter 1 to return: ");
             }
-        return selectedItem;
+            return selectedItem;
         }
     }
 }
