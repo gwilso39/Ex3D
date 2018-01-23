@@ -10,7 +10,7 @@ namespace Ex3D_DoubleEntryAccounting
     {
         static void Main(string[] args)
         {
-            //Execute method asking user with a menu "where would you like to go?" and return thier selection
+            //Execute method for user to select choice from menu and return thier selection
             int selectedItem = selectMainMenuItem();
 
             //Possibly break this out as a method of it's own and test for valid input...
@@ -18,15 +18,18 @@ namespace Ex3D_DoubleEntryAccounting
             switch (selectedItem)
             {
                 case 1:
-                    //call Check Balances Method//write today
+                    //need to look at break and see how to exit (do-while loop work)
                     break;
                 case 2:
-                    //call View Accounts Method
+                    checkBalances();
                     break;
                 case 3:
-                    //call Enter Transactions Method
+                    //call View Accounts Method
                     break;
                 case 4:
+                    //call Enter Transactions Method
+                    break;
+                case 5:
                     //call View Reports Method
                     break;
                 default:
@@ -70,10 +73,27 @@ namespace Ex3D_DoubleEntryAccounting
         static int selectMainMenuItem ()
         {
             int selectedItem = 0;
+            Console.Clear();
             Console.WriteLine("What would you like to do today?");
-            Console.WriteLine(" 1. Check Balances\n 2. View Account\n 3. Enter a Transaction\n 4. View Reports\n");
+            Console.WriteLine(" 1. Exit\n 2. Check Balances\n 3. View Account\n 4. Enter a Transaction\n 5. View Reports\n");
             selectedItem = int.Parse(Console.ReadLine());
             return selectedItem;
-        }   
+        }
+        //method to display accounts and balances
+        //NEED to complete SQL to show the balances of each account
+        static int checkBalances ()
+        {
+            int selectedItem = 0;
+            Console.Clear();
+            Console.WriteLine("Your current balances are:\n");
+            Console.WriteLine(" 1. Assets (Balance)\n 2. Liabilities (Balance)\n 3. Equities (Balance)\n 4. Revenue (Balance)\n 5. Expenses (Balance)\n 6. Gains (Balance)\n 7. Losses (Balance)\n");
+            Console.WriteLine("Enter 1 to return: ");
+            selectedItem = int.Parse(Console.ReadLine());
+            if (selectedItem != 1)
+            {
+                Console.WriteLine("Please enter 1 to return: ");
+            }
+        return selectedItem;
+        }
     }
 }
