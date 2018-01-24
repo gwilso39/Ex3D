@@ -10,33 +10,21 @@ namespace Ex3D_DoubleEntryAccounting
     {
         static void Main(string[] args)
         {
-            //Execute method for user to select choice from menu and return thier selection
-            int selectedItem = selectMainMenuItem();
+            { 
+                var exitProgram = false;
 
-            //Possibly break this out as a method of it's own and test for valid input...
-            //will this run back to the top from the default?  May need to convert this to a loop???
-            switch (selectedItem)
-            {
-                case 1:
-                    //need to look at break and see how to exit (do-while loop work)
-                    break;
-                case 2:
-                    checkBalances();
-                    break;
-                case 3:
-                    viewAccountListing();
-                    break;
-                case 4:
-                    enterTransaction();
-                    break;
-                case 5:
-                    //call View Reports Method
-                    break;
-                default:
-                    Console.WriteLine("Please select an item from the menu as 1 - 4");
-                    break;
+                //display the menu for the user till they press 0 to exit program
+                do
+                {
+                    //Call method for user to select choice from menu and return thier selection
+                    //Place int value of selected i tem in the parameter of what to do with it
+                    //if entered 0, boolean changes to true and program exits
+
+                    exitProgram = actOnSelectedItem(selectMainMenuItem());
+                    
+                //as long as user hasn't entered 0 program remains running
+                } while (!exitProgram);
             }
-            //Console.WriteLine($"You chose item number: {selectedItem}");
 
 
 
@@ -118,7 +106,7 @@ namespace Ex3D_DoubleEntryAccounting
             int selectedItem = 0;
             Console.Clear();
             Console.WriteLine("What would you like to do today?");
-            Console.WriteLine(" 1. Exit\n 2. Check Balances\n 3. View Account\n 4. Enter a Transaction\n 5. View Reports\n");
+            Console.WriteLine(" 1. Check Balances\n 2. View Account\n 3. Enter a Transaction\n 4. View Reports\n 0. Exit Program\n");
             selectedItem = int.Parse(Console.ReadLine());
             return selectedItem;
         }
@@ -137,6 +125,36 @@ namespace Ex3D_DoubleEntryAccounting
                 Console.WriteLine("Please enter 1 to return: ");
             }
             return selectedItem;
+        }
+
+        static bool actOnSelectedItem(int selectedItem)
+
+        {
+            var exitMenu = false;
+
+            switch (selectedItem)
+            {
+                case 1:
+                    checkBalances();
+                    break;
+                case 2:
+                    viewAccountListing();
+                    break;
+                case 3:
+                    enterTransaction();
+                    break;
+                case 4:
+                    //call View Reports Method
+                    break;
+                case 0:
+                    exitMenu = true;
+                    break;
+                default:
+                    Console.WriteLine("Please select an item from the menu as 1 - 4");
+                    break;
+            }
+            return exitMenu;
+
         }
     }
 }
