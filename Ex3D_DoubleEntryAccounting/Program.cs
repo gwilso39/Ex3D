@@ -50,7 +50,7 @@ namespace Ex3D_DoubleEntryAccounting
             Console.Clear();
             Console.WriteLine("Enter your transaction details:\n");
 
-            for (i = 0; i <= 5; i++)
+            for (i = 0; i <= 6; i++)
             {
                 switch (n)
                 {
@@ -71,7 +71,7 @@ namespace Ex3D_DoubleEntryAccounting
                         break;
                     case 4:
                         Console.Write("Account Credited: ");
-                        string acctCredit = Console.ReadLine(); 
+                        string acctCredit = Console.ReadLine();
                         n = 5;
                         break;
                     case 5:
@@ -79,9 +79,24 @@ namespace Ex3D_DoubleEntryAccounting
                         string acctDebit = Console.ReadLine();
                         n = 6;
                         break;
+                    case 6:
+                        Console.WriteLine("Review your details and press 1 to save 0 to go back");
+                        int decMade = int.Parse(Console.ReadLine());
+                        if (decMade == 1)
+                        {
+                            //code here for database save
+                            Console.WriteLine("Your data is saved");
+                            Console.WriteLine("Date: {date}");
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            i = 0;
+                            n = 1;
+                        }
+                        break;
                 }
             }
-            //Do something here at the end of the for loop
         }
 
 
