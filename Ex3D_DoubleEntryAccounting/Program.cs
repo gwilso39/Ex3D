@@ -32,56 +32,79 @@ namespace Ex3D_DoubleEntryAccounting
         {
             int i = 0;
             int n = 1;
+            var validInput = false;
             Console.Clear();
-            Console.WriteLine("Enter your transaction details:\n");
 
-            for (i = 0; i <= 6; i++)
+            do
             {
-                switch (n)
+                Console.WriteLine("Enter your transaction details:\n");
+
+                try
                 {
-                    case 1:
-                        Console.Write("Date: ");
-                        string date = Console.ReadLine();
-                        n = 2;
-                        break;
-                    case 2:
-                        Console.Write("Description: ");
-                        string description = Console.ReadLine();
-                        n = 3;
-                        break;
-                    case 3:
-                        Console.Write("Amount: $");
-                        double amount = double.Parse(Console.ReadLine());
-                        n = 4;
-                        break;
-                    case 4:
-                        Console.Write("Account Credited: ");
-                        string acctCredit = Console.ReadLine();
-                        n = 5;
-                        break;
-                    case 5:
-                        Console.Write("Account Debited: ");
-                        string acctDebit = Console.ReadLine();
-                        n = 6;
-                        break;
-                    case 6:
-                        Console.WriteLine("Review your details and press 1 to save 0 to go back");
-                        int decMade = int.Parse(Console.ReadLine());
-                        if (decMade == 1)
+                    string date = "";
+                    string description = "";
+                    double amount = 0.00;
+                    string acctCredit = "";
+                    string acctDebit = "";
+
+                    for (i = 0; i <= 6; i++)
+                    {
+                        switch (n)
                         {
-                            //code here for database save
-                            Console.WriteLine("Your data is saved");
-                            Console.WriteLine("Date: {date}");
+                            case 1:
+                                Console.Write("Date: ");
+                                date = Console.ReadLine();
+                                n = 2;
+                                break;
+                            case 2:
+                                Console.Write("Description: ");
+                                description = Console.ReadLine();
+                                n = 3;
+                                break;
+                            case 3:
+                                Console.Write("Amount: $");
+                                amount = double.Parse(Console.ReadLine());
+                                n = 4;
+                                break;
+                            case 4:
+                                Console.Write("Account Credited: ");
+                                acctCredit = Console.ReadLine();
+                                n = 5;
+                                break;
+                            case 5:
+                                Console.Write("Account Debited: ");
+                                acctDebit = Console.ReadLine();
+                                n = 6;
+                                break;
+                            case 6:
+                                Console.WriteLine("Review your details and press 1 to save 0 to go back");
+                                int decMade = int.Parse(Console.ReadLine());
+                                if (decMade == 1)
+                                {
+                                    //code here for database save
+                                    Console.WriteLine("Your data is saved");
+                                    Console.WriteLine($"Date: {date}");
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    i = 0;
+                                    n = 1;
+                                }
+                                break;
                         }
-                        else
-                        {
-                            Console.Clear();
-                            i = 0;
-                            n = 1;
-                        }
-                        break;
+                    }
                 }
-            }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+            } while (!validInput);
         }
         
         //Method to View Account Listing for further selection
