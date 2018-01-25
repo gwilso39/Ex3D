@@ -20,27 +20,14 @@ namespace Ex3D_DoubleEntryAccounting
                     //Place int value of selected i tem in the parameter of what to do with it
                     //if entered 0, boolean changes to true and program exits
 
-                    exitProgram = actOnSelectedItem(selectMainMenuItem());
+                    exitProgram = actOnMainMenuSelectedItem(selectMainMenuItem());
                     
                 //as long as user hasn't entered 0 program remains running
                 } while (!exitProgram);
             }
-
-
-
-            //Method to show a menu of reports available and return which one is selected
-            //continue to use item 1 as return to main menu
-            //What are some standard reports needed?  
-            //Balance Sheet (Assets=Liabilities + Capitol)
-            //Income Statement (Revenue Expenses Gains Losses)
-            //Equity Statment (Equity changes)            
-
-            //Method to compile individual reports (each?)
         }
         
-        //Method to enter a transaction, 
-        //as a stretch goal - be able to split a transation between accounts
-
+        //Method to enter a transaction, as a stretch goal - be able to split a transation between accounts
         static void enterTransaction()
         {
             int i = 0;
@@ -96,8 +83,7 @@ namespace Ex3D_DoubleEntryAccounting
                 }
             }
         }
-
-
+        
         //Method to View Account Listing for further selection
         static int viewAccountListing()
         {
@@ -123,12 +109,10 @@ namespace Ex3D_DoubleEntryAccounting
 
             return selectedItem;
         }
+        
+        //NEED a Method to display the appropriate account ledger base on the account selected
 
-
-        //NEED Method or Loop or Case to display the appropriate account ledger
-        //after ledger is displayed, enter 1 to return to account listing
-
-        //GTG Method to display the main menu items to the screen and return user's selection
+        //Method to display the main menu items to the screen and return user's selection
         static int selectMainMenuItem ()
         {
             int selectedItem = 0;
@@ -156,7 +140,6 @@ namespace Ex3D_DoubleEntryAccounting
             return selectedItem;
         }
         
-        
         //Method to display accounts and balances
         //NEED to complete SQL to show the balances of each account
         static int checkBalances ()
@@ -183,10 +166,9 @@ namespace Ex3D_DoubleEntryAccounting
             
             return selectedItem;
         }
-
-
-        //Method to act on whatever item is selected from the menu
-        static bool actOnSelectedItem(int selectedItem)
+        
+        //Method to determine which method to call based on whatever item is selected from the Main Menu
+        static bool actOnMainMenuSelectedItem(int selectedItem)
 
         {
             var exitMenu = false;
@@ -216,6 +198,7 @@ namespace Ex3D_DoubleEntryAccounting
 
         }
 
+        //Method to view the reports listing
         static int viewReportsMenu()
         {
             int selectedItem = 0;
@@ -244,5 +227,7 @@ namespace Ex3D_DoubleEntryAccounting
         return selectedItem;
 
         }
+
+        //NEED a Method to show the report the user wants to see.
     }
 }
