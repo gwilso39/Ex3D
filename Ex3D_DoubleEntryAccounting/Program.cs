@@ -37,11 +37,9 @@ namespace Ex3D_DoubleEntryAccounting
 
             //Method to compile individual reports (each?)
         }
+        
         //Method to enter a transaction, 
         //as a stretch goal - be able to split a transation between accounts
-        //after last item is entered for entry, ask to save transaction or discard
-        //if saved, push transaction to database
-        //ask user to "enter 1 for main menu" and "enter 2 for another transaction"
 
         static void enterTransaction()
         {
@@ -104,44 +102,90 @@ namespace Ex3D_DoubleEntryAccounting
         static int viewAccountListing()
         {
             int selectedItem = 0;
+            var validInput = false;
             Console.Clear();
-            Console.WriteLine("Select the account or 1 to return:");
-            Console.WriteLine(" 1. Assets\n 2. Liabilities\n 3. Equities\n 4. Revenue\n 5. Expenses\n 6. Gains\n 7. Losses\n");
-            selectedItem = int.Parse(Console.ReadLine());
+
+            do
+            {
+                Console.WriteLine("Select the account or 0 to return:");
+                Console.WriteLine(" 1. Assets\n 2. Liabilities\n 3. Equities\n 4. Revenue\n 5. Expenses\n 6. Gains\n 7. Losses\n");
+
+                try
+                {
+                    selectedItem = int.Parse(Console.ReadLine());
+                    validInput = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+            }while ((!validInput) || ((selectedItem >= 8) || (selectedItem < 0)));
+
             return selectedItem;
+        }
+
 
         //NEED Method or Loop or Case to display the appropriate account ledger
         //after ledger is displayed, enter 1 to return to account listing
-        }
 
-
-        //Method to display the main menu items to the screen and return user's selection
+        //GTG Method to display the main menu items to the screen and return user's selection
         static int selectMainMenuItem ()
         {
             int selectedItem = 0;
+            var validInput = false;
             Console.Clear();
-            Console.WriteLine("What would you like to do today?");
-            Console.WriteLine(" 1. Check Balances\n 2. View Account\n 3. Enter a Transaction\n 4. View Reports\n 0. Exit Program\n");
-            selectedItem = int.Parse(Console.ReadLine());
+
+            do
+            {
+
+                Console.WriteLine("What would you like to do today?");
+                Console.WriteLine(" 1. Check Balances\n 2. View Account\n 3. Enter a Transaction\n 4. View Reports\n 0. Exit Program\n");
+                Console.Write("Enter 1-4 or 0 to Exit: ");
+
+                try
+                {
+                    selectedItem = int.Parse(Console.ReadLine());
+                    validInput = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+            } while ((!validInput) || ((selectedItem >= 5) || (selectedItem < 0)));
+
             return selectedItem;
         }
+        
+        
         //Method to display accounts and balances
         //NEED to complete SQL to show the balances of each account
         static int checkBalances ()
         {
             int selectedItem = 0;
-            Console.Clear();
-            Console.WriteLine("Your current balances are:\n");
-            Console.WriteLine(" 1. Return\n Assets (Balance)\n Liabilities (Balance)\n Equities (Balance)\n Revenue (Balance)\n Expenses (Balance)\n Gains (Balance)\n Losses (Balance)\n");
-            Console.WriteLine("Enter 1 to return: ");
-            selectedItem = int.Parse(Console.ReadLine());
-            if (selectedItem != 1)
+            var validInput = false;
+            do
             {
-                Console.WriteLine("Please enter 1 to return: ");
-            }
+                Console.Clear();
+                Console.WriteLine("Your current balances are:\n");
+                Console.WriteLine(" 1. Return\n Assets (Balance)\n Liabilities (Balance)\n Equities (Balance)\n Revenue (Balance)\n Expenses (Balance)\n Gains (Balance)\n Losses (Balance)\n");
+                Console.Write("Enter 1 to return: ");
+
+                try
+                {
+                    selectedItem = int.Parse(Console.ReadLine());
+                    validInput = true;
+                }
+                catch (FormatException)
+                {
+                    Console.Write("Invalid Input");
+                }
+            } while ((!validInput) || (selectedItem != 1));
+            
             return selectedItem;
         }
 
+
+        //Method to act on whatever item is selected from the menu
         static bool actOnSelectedItem(int selectedItem)
 
         {
@@ -159,7 +203,7 @@ namespace Ex3D_DoubleEntryAccounting
                     enterTransaction();
                     break;
                 case 4:
-                    //call View Reports Method
+                    viewReportsMenu();
                     break;
                 case 0:
                     exitMenu = true;
@@ -169,6 +213,35 @@ namespace Ex3D_DoubleEntryAccounting
                     break;
             }
             return exitMenu;
+
+        }
+
+        static int viewReportsMenu()
+        {
+            int selectedItem = 0;
+            var validInput = false;
+            Console.Clear();
+
+            do
+            {
+                Console.WriteLine("Select a report to view or 0 to return:");
+                Console.WriteLine(" 1. Income Statement\n    Revenue + Interest - Income taxes\n " +
+                    "2. Total Assets\n    Assets + Revenue + Equity\n " +
+                    "3. Liabilities\n    Liabilities + Expenses\n " +
+                    "4. Balance Sheet\n    Assets - Liabilities\n");
+
+                try
+                {
+                    selectedItem = int.Parse(Console.ReadLine());
+                    validInput = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+            } while ((!validInput) || ((selectedItem >= 8) || (selectedItem < 0)));
+
+        return selectedItem;
 
         }
     }
