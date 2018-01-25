@@ -116,6 +116,7 @@ namespace Ex3D_DoubleEntryAccounting
 
             do
             {
+                validInput = false;
                 Console.WriteLine("Select the account or 0 to return:");
                 Console.WriteLine(" 1. Assets\n 2. Liabilities\n 3. Equities\n 4. Revenue\n 5. Expenses\n 6. Gains\n 7. Losses\n");
 
@@ -144,7 +145,7 @@ namespace Ex3D_DoubleEntryAccounting
 
             do
             {
-
+                validInput = false;
                 Console.WriteLine("What would you like to do today?");
                 Console.WriteLine(" 1. Check Balances\n 2. View Account\n 3. Enter a Transaction\n 4. View Reports\n 0. Exit Program\n");
                 Console.Write("Enter 1-4 or 0 to Exit: ");
@@ -171,6 +172,7 @@ namespace Ex3D_DoubleEntryAccounting
             var validInput = false;
             do
             {
+                validInput = false;
                 Console.Clear();
                 Console.WriteLine("Your current balances are:\n");
                 Console.WriteLine(" 1. Return\n Assets (Balance)\n Liabilities (Balance)\n Equities (Balance)\n Revenue (Balance)\n Expenses (Balance)\n Gains (Balance)\n Losses (Balance)\n");
@@ -230,6 +232,7 @@ namespace Ex3D_DoubleEntryAccounting
 
             do
             {
+                validInput = false;
                 Console.WriteLine("Select a report to view or 0 to return:");
                 Console.WriteLine(" 1. Income Statement\n    Revenue + Interest - Income taxes\n " +
                     "2. Total Assets\n    Assets + Revenue + Equity\n " +
