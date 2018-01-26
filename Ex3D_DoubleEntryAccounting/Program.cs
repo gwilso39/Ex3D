@@ -17,7 +17,7 @@ namespace Ex3D_DoubleEntryAccounting
                 do
                 {
                     //Call method for user to select choice from menu and return thier selection
-                    //Place int value of selected i tem in the parameter of what to do with it
+                    //Place int value of selected item in the parameter of what to do with it
                     //if entered 0, boolean changes to true and program exits
 
                     exitProgram = actOnMainMenuSelectedItem(selectMainMenuItem());
@@ -27,7 +27,7 @@ namespace Ex3D_DoubleEntryAccounting
             }
         }
         
-        //Method to enter a transaction, PLUS a stretch goal - be able to split a transation between accounts
+        //Method to enter a transaction, PLUS a STRETCH GOAL - be able to split a transation between accounts
         static void enterTransaction()
         {
             var done = false;
@@ -272,7 +272,7 @@ namespace Ex3D_DoubleEntryAccounting
 
         }
 
-        //Method to view the reports listing
+        //Method to view the reports listing THIS WAS also a STRETCH GOAL
         static int viewReportsMenu()
         {
             int selectedItem = 0;
