@@ -27,12 +27,10 @@ namespace Ex3D_DoubleEntryAccounting
             }
         }
         
-        //Method to enter a transaction, as a stretch goal - be able to split a transation between accounts
+        //Method to enter a transaction, PLUS a stretch goal - be able to split a transation between accounts
         static void enterTransaction()
         {
-            int i = 0;
-            int n = 1;
-            var validInput = false;
+            var done = false;
             Console.Clear();
 
             do
@@ -41,58 +39,109 @@ namespace Ex3D_DoubleEntryAccounting
 
                 try
                 {
-                    string date = "";
-                    string description = "";
-                    double amount = 0.00;
-                    string acctCredit = "";
-                    string acctDebit = "";
+                    Console.Write("Date: ");
+                    string date = Console.ReadLine();
 
-                    for (i = 0; i <= 6; i++)
+                    Console.Write("Description: ");
+                    string description = Console.ReadLine();
+
+                    bool goodInput = true;
+                    string acctCredit;
+                    string acctCredit1;
+                    double amount = 0;
+                    double amount1 = 0;
+                    string acctDebit;
+                    string acctDebit1;
+                    double amountDebit = 0;
+                    double amountDebit1 = 0;
+
+                    do
                     {
-                        switch (n)
+                        Console.Write("Does this transaction have multiple accounts to credit? (Y or N): ");
+                        char answerToCredits = char.Parse(Console.ReadLine());
+
+                        if ((answerToCredits != 'Y') && (answerToCredits != 'N'))
                         {
-                            case 1:
-                                Console.Write("Date: ");
-                                date = Console.ReadLine();
-                                n = 2;
-                                break;
-                            case 2:
-                                Console.Write("Description: ");
-                                description = Console.ReadLine();
-                                n = 3;
-                                break;
-                            case 3:
-                                Console.Write("Amount: $");
-                                amount = double.Parse(Console.ReadLine());
-                                n = 4;
-                                break;
-                            case 4:
-                                Console.Write("Account Credited: ");
-                                acctCredit = Console.ReadLine();
-                                n = 5;
-                                break;
-                            case 5:
-                                Console.Write("Account Debited: ");
-                                acctDebit = Console.ReadLine();
-                                n = 6;
-                                break;
-                            case 6:
-                                Console.WriteLine("Review your details and press 1 to save 0 to go back");
-                                int decMade = int.Parse(Console.ReadLine());
-                                if (decMade == 1)
-                                {
-                                    //code here for database save
-                                    Console.WriteLine("Your data is saved");
-                                    Console.WriteLine($"Date: {date}");
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                    i = 0;
-                                    n = 1;
-                                }
-                                break;
+                            Console.Write("Please enter Y or N only: ");
+                            goodInput = false;
                         }
+                        else if (answerToCredits == 'Y')
+                        {
+                            Console.WriteLine("You can enter 2 pairs.");
+                            Console.Write("Account Credited: ");
+                            acctCredit = Console.ReadLine();
+                            Console.Write("Amount: $");
+                            amount = double.Parse(Console.ReadLine());
+                            Console.Write("2nd Account Credited: ");
+                            acctCredit1 = Console.ReadLine();
+                            Console.Write("2nd Amount: $");
+                            amount1 = double.Parse(Console.ReadLine());
+                            double sum = ((amount) + (amount1));
+                            Console.Write($"\nTotal Credit = {sum}\n");
+                            goodInput = true;
+                        }
+                        else
+                        {
+                            Console.Write("Account Credited: ");
+                            acctCredit = Console.ReadLine();
+                            Console.Write("Amount: $");
+                            amount = double.Parse(Console.ReadLine());
+                            goodInput = true;
+                        }
+                    } while (goodInput == false);
+
+                    do
+                    {
+                        Console.Write("Does this transaction have multiple accounts to debit? (Y or N): ");
+                        char answerToDebits = char.Parse(Console.ReadLine());
+
+                        if ((answerToDebits != 'Y') && (answerToDebits != 'N'))
+                        {
+                            Console.Write("Please enter Y or N only: ");
+                            goodInput = false;
+                        }
+                        else if (answerToDebits == 'Y')
+                        {
+                            Console.WriteLine("You can enter 2 pairs.");
+                            Console.Write("Account Debited: ");
+                            acctDebit = Console.ReadLine();
+                            Console.Write("Amount: $");
+                            amountDebit = double.Parse(Console.ReadLine());
+                            Console.Write("2nd Account Debited: ");
+                            acctDebit1 = Console.ReadLine();
+                            Console.Write("2nd Amount: $");
+                            amountDebit1 = double.Parse(Console.ReadLine());
+                            double sum = ((amountDebit) + (amountDebit1));
+                            Console.Write($"\nTotal Debit = {sum}\n");
+                            goodInput = true;
+                        }
+                        else
+                        {
+                            Console.Write("Account Debited: ");
+                            acctDebit = Console.ReadLine();
+                            Console.Write("Amount: $");
+                            amountDebit = double.Parse(Console.ReadLine());
+                            goodInput = true;
+                        }
+                    } while (goodInput == false);
+
+                    Console.WriteLine("\nReview your details and press 1 to save 0 to go back");
+                    double lhs = ((amount) + (amount1));
+                    double rhs = ((amountDebit) + (amountDebit1));
+                    Console.Write($"Note: Credits = ${lhs} and Debits = ${rhs}.\nEnter 1 or 0: ");
+
+                    int decMade = int.Parse(Console.ReadLine());
+                    if (decMade == 1)
+                    {
+                        //code here for database save
+                        Console.WriteLine("Your data is saved");
+                        Console.WriteLine("Hit enter to continue");
+                        Console.ReadLine();
+                        done = true;
+                    }
+                    else
+                    {
+                        Console.Clear();
                     }
                 }
                 catch (FormatException)
@@ -104,7 +153,7 @@ namespace Ex3D_DoubleEntryAccounting
                     Console.WriteLine(ex.Message);
                 }
                 
-            } while (!validInput);
+            } while (!done);
         }
         
         //Method to View Account Listing for further selection
