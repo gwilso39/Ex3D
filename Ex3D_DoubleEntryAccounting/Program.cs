@@ -42,6 +42,9 @@ namespace Ex3D_DoubleEntryAccounting
                     Console.Write("Date: ");
                     string date = Console.ReadLine();
 
+                    Console.Write("Identifier: ");
+                    string identifier = Console.ReadLine();
+
                     Console.Write("Description: ");
                     string description = Console.ReadLine();
 
